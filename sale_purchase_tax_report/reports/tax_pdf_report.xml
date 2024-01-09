@@ -134,8 +134,8 @@
                                     <td class="text-left">
                                         <span t-esc="o.currency_id.name"/>
                                         <br/>
-                                        <span t-esc="'%.2f'% (o.amount_untaxed/100*(19.5))"/>
-                                        <t t-set="tax19_5" t-value="tax19_5+(o.amount_untaxed/100*(19.5))"/>
+                                        <span t-esc="'%.2f'% (o.amount_untaxed_signed*19.5/100)"/>
+                                        <t t-set="tax19_5" t-value="tax19_5+(o.amount_untaxed_signed*19.5/100)"/>
                                         <!--                                        <t t-foreach="o.invoice_line_ids.tax_ids.ids" t-as="tax_id">-->
                                         <!--                                            <span t-esc="request.env['account.tax'].search([('id', '=', tax_id)]).name"/>-->
                                         <!--                                            <br/>-->
@@ -144,8 +144,8 @@
                                     <td class="text-left">
                                         <span t-esc="o.currency_id.name"/>
                                         <br/>
-                                        <span t-esc="'%.2f'% (o.amount_untaxed/100*(15))"/>
-                                        <t t-set="tax15" t-value="tax15+(o.amount_untaxed/100*(15))"/>
+                                        <span t-esc="'%.2f'% (((o.amount_untaxed_signed)+(o.amount_untaxed_signed*19.5/100))*15/100)"/>
+                                        <t t-set="tax15" t-value="tax15+((o.amount_untaxed_signed)+(o.amount_untaxed_signed*19.5/100))*15/100"/>
                                         <!--                                        <t t-foreach="o.invoice_line_ids.tax_ids.ids" t-as="tax_id">-->
                                         <!--                                            <span t-esc="o.currency_id.name"/>-->
                                         <!--                                            <span t-esc="'%.2f'% (o.amount_untaxed/100*(request.env['account.tax'].search([('id', '=', tax_id)]).amount))"/>-->
@@ -159,7 +159,7 @@
                                     </td>
                                     <td class="text-right">
                                         <span t-esc="o.currency_id.name"/>
-                                        <span t-esc="tax19_5+tax15"/>
+                                        <span t-esc="o.amount_tax_signed"/>
                                         <t t-set="total_tax_sale" t-value="total_tax_sale+(o.amount_tax_signed)"/>
                                         <t t-set="currency_name" t-value="o.currency_id.name"/>  <!--Currency Nmae  -->
                                     </td>
