@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="commission_agent_tree_view_id" model="ir.ui.view">
-            <field name="name">commission_agent.tree.view.id</field>
+            <field name="name">commission.agent.tree.view.id</field>
             <field name="model">commission.agent</field>
             <field name="arch" type="xml">
                 <tree string="Commission Agents" editable="bottom" multi_edit="1">
@@ -13,7 +13,7 @@
         </record>
 
         <!--        <record id="commission_agent_form_view_id" model="ir.ui.view">-->
-        <!--            <field name="name">commission_agent.form.view.id</field>-->
+        <!--            <field name="name">commission.agent.form.view.id</field>-->
         <!--            <field name="model">commission.agent</field>-->
         <!--            <field name="arch" type="xml">-->
         <!--                <form string="Commission Agents">-->

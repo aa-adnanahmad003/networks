@@ -19,6 +19,7 @@
         'security/ir.model.access.csv',
         'views/commission_agent.xml',
         'views/res_partner_ext.xml',
+        'views/commission_settlement.xml',
     ],
 
     # Technical
