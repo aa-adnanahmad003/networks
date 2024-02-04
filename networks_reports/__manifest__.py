@@ -19,13 +19,15 @@
     'license': 'LGPL-3',
 
     # Dependencies
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock', 'sale_purchase_tax_report'],
 
     # Views
     'data': [
         'security/ir.model.access.csv',
         'wizards/products_detail_wizard.xml',
+        'wizards/customer_statement.xml',
         'reports/products_detail_report.xml',
+        'reports/customer_statement_report.xml',
     ],
 
     # Technical

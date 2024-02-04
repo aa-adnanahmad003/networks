@@ -35,11 +35,16 @@
         </record>
         <!--                Menuitems-->
 
+        <menuitem id="custom_account_report_menu_id"
+                  name="Networks Pvt. Ltd. Custom Reports"
+                  parent="account.menu_finance_reports"
+                  sequence="0"
+        />
         <menuitem id="tax_report_menu_id"
                   name="Tax Report"
-                  parent="account.menu_finance_reports"
+                  parent="custom_account_report_menu_id"
                   action="tax_wizard_action"
-                  sequence="2"
+                  sequence="5"
         />
 
     </data>
