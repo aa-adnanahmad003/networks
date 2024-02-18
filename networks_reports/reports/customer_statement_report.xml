@@ -100,7 +100,7 @@
                             <t t-foreach="read_grouped_data" t-as="rg_data">
                                 <t t-set="filtered_data" t-value="docs.search(rg_data['__domain'])"/>
                                 <tr style="page-break-inside: avoid; adlgin:0px; font-size:15px; font-style:octarine; padding:0px;background-color:#ADD8E6;text-align:left;">
-                                    <th class="text-capitalize text-dark" colspan="13">
+                                    <th class="text-capitalize text-dark" colspan="13" style="border:1px solid black;">
                                         <b>
                                             <t t-esc="filtered_data['partner_id'].name"/>
                                         </b>
