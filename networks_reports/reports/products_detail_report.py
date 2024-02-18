@@ -8,13 +8,20 @@ class ProductsDetail(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data):
-        if data['product_id']:
-            doc = self.env['account.move'].search([('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice')]).invoice_line_ids.filtered(lambda l: l.product_id.id == data['product_id'])
+        if data['report_type'] == 'out_invoice':
+            if data['product_id']:
+                doc = self.env['account.move.line'].search([('date', '>=', data['start_date']), ('date', '<=', data['end_date']), ('parent_state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('product_id', '!=', False), ('product_id', '=', data['product_id'])])
+            else:
+                doc = self.env['account.move.line'].search([('date', '>=', data['start_date']), ('date', '<=', data['end_date']), ('parent_state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('product_id', '!=', False)])
         else:
-            doc = self.env['account.move'].search([('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice')])
+            if data['product_id']:
+                doc = self.env['account.move.line'].search([('date', '>=', data['start_date']), ('date', '<=', data['end_date']), ('parent_state', '=', 'posted'), ('move_type', '=', 'in_invoice'), ('product_id', '!=', False), ('product_id', '=', data['product_id'])])
+            else:
+                doc = self.env['account.move.line'].search([('date', '>=', data['start_date']), ('date', '<=', data['end_date']), ('parent_state', '=', 'posted'), ('move_type', '=', 'in_invoice'), ('product_id', '!=', False)])
+
         if doc:
             return {
                 'docs': doc,
             }
         else:
-            raise ValidationError('No Invoice is available.')
+            raise ValidationError('No Record is available regarding the Parameters.')

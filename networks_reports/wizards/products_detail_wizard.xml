@@ -11,11 +11,11 @@
                         <group>
                             <group>
                                 <field name="start_date"/>
-                                <field name="product_id"/>
+                                <field name="report_type"/>
                             </group>
                             <group>
                                 <field name="end_date"/>
-                                <field name="report_type"/>
+                                <field name="product_id"/>
                             </group>
                         </group>
                         <footer>
@@ -39,9 +39,9 @@
 
         <menuitem id="tax_report_menu_id"
                   name="Products Detail Report"
-                  parent="stock.menu_warehouse_report"
+                  parent="sale_purchase_tax_report.custom_account_report_menu_id"
                   action="products_detail_action"
-                  sequence="10"
+                  sequence="15"
         />
 
     </data>

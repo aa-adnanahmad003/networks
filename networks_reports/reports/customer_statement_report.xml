@@ -135,7 +135,7 @@
                                         </td>
                                     </tr>
                                 </t>
-                                <tr style="page-break-inside: avoid; adlgin:0px; font-size:15px; font-style:octarine; padding:0px;text-align:left; background-color:LightGray">
+                                <tr style="page-break-inside: avoid; adlgin:0px; font-size:15px; font-style:octarine; padding:0px;text-align:left;">
                                     <td colspan="3" class="text-center">
                                         <b><span t-field="o.partner_id.name"/>'s Total</b>
 <!--                                        <b>Customer Total</b>-->
@@ -158,6 +158,7 @@
                                         </b>
                                     </td>
                                 </tr>
+                                <tr style="height:14px;"><td/><td/><td/><td/><td/><td/></tr>
                             </t>
                             <tr>
                                 <td colspan="3" class="text-center text-white text-capitalize"
@@ -177,7 +178,6 @@
                                     <span t-esc="'{0:,.2f}'.format(total_amount-paid_amount)"/>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
 

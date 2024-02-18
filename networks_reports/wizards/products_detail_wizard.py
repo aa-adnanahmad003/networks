@@ -11,7 +11,7 @@ class ProductsDetail(models.TransientModel):
     start_date = fields.Date('Start Date : ', required=True)
     end_date = fields.Date('End Date : ', default=datetime.today(), required=True)
     product_id = fields.Many2one('product.product', 'Product : ')
-    report_type = fields.Selection([('product', 'Product Wise'), ('partner', 'Customer Wise')], 'Report Type :',default='product' , required=True)
+    report_type = fields.Selection([('out_invoice', 'Sale Report'), ('in_invoice', 'Purchase Report')], 'Report Type :',default='out_invoice' , required=True)
 
     def products_detail_report(self):
         if self.start_date > self.end_date:
@@ -19,6 +19,7 @@ class ProductsDetail(models.TransientModel):
         data = {
             'start_date': self.start_date,
             'end_date': self.end_date,
+            'report_type': self.report_type,
             'product_id': self.product_id.id,
         }
         return self.env.ref('networks_reports.products_detail_report_id').report_action(self, data=data)
