@@ -28,6 +28,7 @@
         'wizards/customer_statement.xml',
         'reports/products_detail_report.xml',
         'reports/customer_statement_report.xml',
+        'reports/account_move_report.xml',
     ],
 
     # Technical
