@@ -9,8 +9,12 @@ class MaesindoGetReports(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data):
         # Only Invoices/Bills have Tax
-        sale_doc = self.env['account.move'].search([('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('amount_tax_signed', '!=', 0)])
-        purchase_doc = self.env['account.move'].search([('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'in_invoice'), ('amount_tax_signed', '!=', 0)])
+        if data['partner_id']:
+            sale_doc = self.env['account.move'].search([('partner_id', '=', int(data['partner_id'])), ('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('amount_tax_signed', '!=', 0)])
+            purchase_doc = self.env['account.move'].search([('partner_id', '=', int(data['partner_id'])), ('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'in_invoice'), ('amount_tax_signed', '!=', 0)])
+        else:
+            sale_doc = self.env['account.move'].search([('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('amount_tax_signed', '!=', 0)])
+            purchase_doc = self.env['account.move'].search([('invoice_date', '>=', data['start_date']), ('invoice_date', '<=', data['end_date']), ('state', '=', 'posted'), ('move_type', '=', 'in_invoice'), ('amount_tax_signed', '!=', 0)])
 
         if sale_doc or purchase_doc:
             return {

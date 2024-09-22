@@ -10,6 +10,7 @@ class ParametricReport(models.TransientModel):
 
     start_date = fields.Date('Start Date : ', required=True)
     end_date = fields.Date('End Date : ', default=datetime.today(), required=True)
+    partner_id = fields.Many2one('res.partner', string='Customer')
 
     def tax_parametric_report(self):
         if self.start_date > self.end_date:
@@ -17,6 +18,7 @@ class ParametricReport(models.TransientModel):
         data = {
             'start_date': self.start_date,
             'end_date': self.end_date,
+            'partner_id': self.partner_id.id,
         }
         return self.env.ref('sale_purchase_tax_report.tax_pdf_report_id').report_action(self, data=data)
 
