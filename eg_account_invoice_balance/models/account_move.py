@@ -5,7 +5,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     customer_credit = fields.Float(string="Customer Credit", compute="_compute_customer_credit")
-    print_customer_credit_on_invoice = fields.Boolean(string="Print Customer Credit")
+    print_customer_credit_on_invoice = fields.Boolean(string="Print Customer Credit", default=True)
 
     # @api.depends("invoice_line_ids.product_id", "invoice_line_ids.quantity")
     def _compute_customer_credit(self):
