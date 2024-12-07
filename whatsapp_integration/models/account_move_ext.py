@@ -242,20 +242,21 @@ class AccountMoveExt(models.Model):
         # Call super to handle the standard Odoo process
         res = super(AccountMoveExt, self).action_post()
 
-        # Create the PDF attachment
-        attachment_id = self.create_attachment('account.account_invoices', f'{self.name.replace("/", "-")}.pdf')
+        if self:
+            # Create the PDF attachment
+            attachment_id = self.create_attachment('account.account_invoices', f'{self.name.replace("/", "-")}.pdf')
 
-        # Specify the custom server-side folder where you want to save the file
-        custom_folder_path = '/Odoo16/env/Odoo16/addons/networks/whatsapp_integration/temp_invoices'
+            # Specify the custom server-side folder where you want to save the file
+            custom_folder_path = '/Odoo16/env/Odoo16/addons/networks/whatsapp_integration/temp_invoices'
 
-        # Save the attachment to the custom folder
-        self.save_attachment_to_folder(attachment_id, custom_folder_path)
+            # Save the attachment to the custom folder
+            self.save_attachment_to_folder(attachment_id, custom_folder_path)
 
-        # Commit the current transaction to avoid issues with background processes
-        self.env.cr.commit()
-        # Now continue with the WhatsApp message sending
-        self._send_whatsapp_message(attachment_id)
+            # Commit the current transaction to avoid issues with background processes
+            self.env.cr.commit()
+            # Now continue with the WhatsApp message sending
+            self._send_whatsapp_message(attachment_id)
 
-        self.delete_file_in_folder(custom_folder_path+ f'/{self.name.replace("/", "-")}.pdf')
+            self.delete_file_in_folder(custom_folder_path+ f'/{self.name.replace("/", "-")}.pdf')
         return res
 
