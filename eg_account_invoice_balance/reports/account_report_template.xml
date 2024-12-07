@@ -11,7 +11,7 @@
             </t>
         </xpath>
     </template>
-    <template id="report_invoice_document_for_customer_credit" inherit_id="account.document_tax_totals">
+<!--     <template id="report_invoice_document_for_customer_credit" inherit_id="account.document_tax_totals">
         <xpath expr="//tr[@class='border-black o_total']" position="after">
             <tr class="border-black fw-bold">
                 <td>Customer Dues:</td>
@@ -20,5 +20,5 @@
                 </td>
             </tr> 
         </xpath>
-    </template>
+    </template> -->
 </odoo>
