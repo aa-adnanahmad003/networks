@@ -67,7 +67,8 @@ class AccountMoveExt(models.Model):
         # WhatsApp API details
         url = "https://watilio.com/api/send/whatsapp"
         secret = '0d9a5bb8f95f651bee036d791c60b98f112473ed'
-        account = '17133499396c8349cc7260ae62e3b1396831a8398f661fa533a0506'
+        account = '17372662686c8349cc7260ae62e3b1396831a8398f678c945c93f3c' # new Account for number +92 315 0000472
+        # account = '17133499396c8349cc7260ae62e3b1396831a8398f661fa533a0506'
         mobile = self.partner_id.mobile
 
         if mobile:
